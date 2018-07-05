@@ -1,5 +1,6 @@
 package com.create.core.servlet;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.create.util.WxAuthUtil;
 
 import net.sf.json.JSONObject;
-
+@WebServlet("/callback")
 public class CallBackServlet extends HttpServlet {
 
 	public CallBackServlet() {
@@ -23,6 +24,11 @@ public class CallBackServlet extends HttpServlet {
 		JSONObject jsonObject = WxAuthUtil.doGetJson(url);
 		String openId = jsonObject.getString("openid");
 		String token = jsonObject.getString("access_token");
+		String userUrl="https://api.weixin.qq.com/sns/userinfo?access_token="+token
+				+ "&openid="+openId
+				+ "&lang=zh_CN";
+		JSONObject user_json = WxAuthUtil.doGetJson(userUrl);
+		
 	}
 
 }
