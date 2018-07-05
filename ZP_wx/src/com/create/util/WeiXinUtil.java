@@ -47,7 +47,7 @@ public class WeiXinUtil {
 				String result = EntityUtils.toString(httpentity, "UTF-8");
 				//把返回的字符串转换成jsonObject
 				jsonobject = JSONObject.fromObject(result);
-//				释放链接
+                //释放链接
 				httpget.releaseConnection();
 			}
 		} catch (ParseException e) {
