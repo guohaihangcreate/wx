@@ -21,7 +21,7 @@ import com.create.po.menue.ViewButton;
 import net.sf.json.JSONObject;
 
 @SuppressWarnings("deprecation")
-public class WxAuthUtil {
+public class WxUtil {
 	
 	public static final String APPID="wxc2c705d84eec52ed";
 	
@@ -29,7 +29,6 @@ public class WxAuthUtil {
 	
 	
 	private static final String ACCESS_TOKEN_URL="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
-	
 	
 	private static final String CREATE_MENUEURL="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
 	
@@ -98,26 +97,27 @@ public class WxAuthUtil {
 	public static Menue initMenue() {
 		Menue menue = new Menue();
 		ClickButton button11 = new ClickButton();
-		button11.setName("关于柯锐特");
+		button11.setKey("click菜单");
 		button11.setType("click");
 		button11.setKey("11");
 		
 		ViewButton button21 = new ViewButton();
-		button21.setName("我要应聘");
+		button21.setName("view菜单");
 		button21.setType("view");
 		button21.setUrl("http://www.xiangmu.ren");
 		
-		ViewButton button31 = new ViewButton();
-		button31.setName("考勤信息");
-		button31.setType("view");
-		button31.setUrl("http://www.xiangmu.ren");
+		ClickButton button31 = new ClickButton();
+		button31.setName("扫码事件");
+		button31.setType("scancode_push");
+		button31.setKey("31");
 		
-		ViewButton button32 = new ViewButton();
-		button32.setName("薪酬查询");
-		button32.setType("view");
-		button32.setUrl("http://www.xiangmu.ren");
+		ClickButton button32 = new ClickButton();
+		button32.setName("地理位置");
+		button32.setType("location_select");
+		button32.setKey("32");
+		
 		Button button = new Button();
-		button.setName("员工查询");
+		button.setName("菜单");
 		button.setSub_button(new Button[] {button31,button32});
 		menue.setButton(new Button[] {button11,button21,button});
 		return menue;
