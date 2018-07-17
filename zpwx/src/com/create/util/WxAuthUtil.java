@@ -110,12 +110,12 @@ public class WxAuthUtil {
 		ViewButton button31 = new ViewButton();
 		button31.setName("考勤信息");
 		button31.setType("view");
-		button31.setUrl("http://www.xiangmu.ren");
+		button31.setUrl("http://weixin.xiangmu.ren/zpwx/kaoqin_page.jsp");
 		
 		ViewButton button32 = new ViewButton();
 		button32.setName("薪酬查询");
 		button32.setType("view");
-		button32.setUrl("http://www.xiangmu.ren");
+		button32.setUrl("http://weixin.xiangmu.ren/zpwx/gzt_page.jsp");
 		Button button = new Button();
 		button.setName("员工查询");
 		button.setSub_button(new Button[] {button31,button32});
