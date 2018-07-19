@@ -22,24 +22,28 @@
 	<header class="bar bar-nav">
 <!-- 	<h1 class='title'>栅格</h1> -->
 	</header>
-	<div class="content">
+	<div class="content" style="background:url('../img/timg.jpg');">
 		<div class="content-padded grid-demo">
-			<div class="row" style="height: 80%;">
-				<div class="col-33" >
-					<a href="www.baidu.com">工资条查询</a>
+			 <div class="row no-gutter">
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">工资条查询</a>
 				</div>
-				<div class="col-33">考勤查询</div>
-				<div class="col-33">项目通知</div>
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">考勤查询</a></div>
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">项目通知</a></div>
 			</div>
-			<div class="row">
-				<div class="col-33">放假通知</div>
-				<div class="col-33">集团动态</div>
-				<div class="col-33">......</div>
+			<div class="row no-gutter">
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">放假通知</a></div>
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
+					<a href="www.baidu.com">集团动态</a></div>
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
+					<a href="www.baidu.com">......</a></div>
 			</div>
-			<div class="row">
-				<div class="col-33">工作机会</div>
-				<div class="col-33">推荐有礼</div>
-				<div class="col-33">......</div>
+			 <div class="row no-gutter">
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
+					<a href="www.baidu.com">工作机会</a></div>
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
+					<a href="www.baidu.com">推荐有礼</a></div>
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
+					<a href="www.baidu.com">......</a></div>
 			</div>
 		</div>
 	</div>
