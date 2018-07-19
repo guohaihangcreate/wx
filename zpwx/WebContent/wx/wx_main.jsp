@@ -56,7 +56,7 @@
 		class="icon icon-star"></span> <span class="tab-label">蜗牛在行动</span>
 	</a> <a class="tab-item external" href="#"> <span
 		class="icon icon-cart"></span> <span class="tab-label">蜗牛历史</span>
-	</a> <a class="tab-item external" href="#"> <span
+	</a> <a class="tab-item external" href="${pageContext.request.contextPath}/myinfo.jsp"> <span
 		class="icon icon-settings"></span> <span class="tab-label">我</span>
 	</a> </nav>
 
