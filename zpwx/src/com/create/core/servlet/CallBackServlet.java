@@ -46,11 +46,13 @@ public class CallBackServlet extends HttpServlet {
 		userinfo.setPrivilege(userInfoObject.getString("province"));
 		userinfo.setUnionid(userInfoObject.getString("privilege"));
 		userinfo.setSex(userInfoObject.getString("sex"));
+		request.getSession().setAttribute("userinfo", userinfo);
 		request.setAttribute("userinfo", userinfo);
 //		String menueUrl= "https://api.weixin.qq.com/cgi-bin/menu/get?access_token="
 //				+ WeiXinUtil.getAccessToken().getToken();
 //				JSONObject menueObject =WeiXinUtil.doPostStr(menueUrl);
-		request.getRequestDispatcher("/myinfo.jsp").forward(request, response);
+//		request.getRequestDispatcher("/myinfo.jsp").forward(request, response);
+		request.getRequestDispatcher("/wx/wx_main.jsp").forward(request, response);
 	}
 
 }
