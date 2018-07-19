@@ -107,19 +107,24 @@ public class WxAuthUtil {
 		button21.setType("view");
 		button21.setUrl("http://www.xiangmu.ren");
 		
-		ViewButton button31 = new ViewButton();
-		button31.setName("考勤信息");
-		button31.setType("view");
-		button31.setUrl("http://weixin.xiangmu.ren/zpwx/kaoqin_page.jsp");
+		ViewButton button_login = new ViewButton();
+		button_login.setName("员工登陆");
+		button_login.setType("view");
+		button_login.setUrl("http://weixin.xiangmu.ren/zpwx/WxAuthLogIn");
 		
-		ViewButton button32 = new ViewButton();
-		button32.setName("薪酬查询");
-		button32.setType("view");
-		button32.setUrl("http://weixin.xiangmu.ren/zpwx/gzt_page.jsp");
-		Button button = new Button();
-		button.setName("员工查询");
-		button.setSub_button(new Button[] {button31,button32});
-		menue.setButton(new Button[] {button11,button21,button});
+//		ViewButton button31 = new ViewButton();
+//		button31.setName("考勤信息");
+//		button31.setType("view");
+//		button31.setUrl("http://weixin.xiangmu.ren/zpwx/kaoqin_page.jsp");
+//		
+//		ViewButton button32 = new ViewButton();
+//		button32.setName("薪酬查询");
+//		button32.setType("view");
+//		button32.setUrl("http://weixin.xiangmu.ren/zpwx/gzt_page.jsp");
+//		Button button = new Button();
+//		button.setName("员工查询");
+//		button.setSub_button(new Button[] {button_login});
+		menue.setButton(new Button[] {button11,button21,button_login});
 		return menue;
 	};
 	
