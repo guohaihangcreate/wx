@@ -1,5 +1,15 @@
 eclipse.preferences.version=1
 encoding//WebContent/register.jsp=UTF-8
 encoding//WebContent/register_bak1.jsp=UTF-8
+encoding//src/com/create/core/servlet/CallBackServlet.java=UTF-8
+encoding//src/com/create/dao/DaoFactory.java=UTF-8
+encoding//src/com/create/po/Wx_user.java=UTF-8
+encoding//src/com/create/service/Jdbc_Service.java=UTF-8
+encoding//src/com/create/service/Wx_userServices.java=UTF-8
+encoding//src/com/create/test/JdbcTest.java=UTF-8
+encoding//src/com/create/util/CodeUtil.java=GBK
 encoding//src/com/create/util/HttpUtils.java=UTF-8
 encoding//src/com/create/util/SSLClient.java=UTF-8
+encoding//src/com/create/util/WeiXinUtil.java=GBK
+encoding//src/com/create/util/WxAuthUtil.java=GBK
+encoding/<project>=GBK

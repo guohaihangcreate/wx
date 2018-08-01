@@ -35,9 +35,10 @@
 									<i class="icon icon-form-name"></i>
 								</div>
 								<div class="item-inner">
-									<div class="item-title label">姓名</div>
+									<div class="item-title label">真实姓名</div>
 									<div class="item-input">
-										<input type="text" placeholder="姓 名">
+										<input type="hidden"  name="openid" id="openid" value="${sessionScope.userinfo.openid}">
+										<input type="text" placeholder="真实姓名" name="realname" id="realname">
 									</div>
 								</div>
 							</div>
@@ -50,7 +51,7 @@
 								<div class="item-inner">
 									<div class="item-title label">邮箱</div>
 									<div class="item-input">
-										<input type="email" placeholder="邮箱">
+										<input type="email" placeholder="邮箱" id="email">
 									</div>
 								</div>
 							</div>
@@ -63,7 +64,7 @@
 								<div class="item-inner">
 									<div class="item-title label">密码</div>
 									<div class="item-input">
-										<input type="password" placeholder="密码" class="">
+										<input type="password" placeholder="密码" name="password" id="password">
 									</div>
 								</div>
 							</div>
@@ -76,9 +77,10 @@
 								<div class="item-inner">
 									<div class="item-title label">性别</div>
 									<div class="item-input">
-										<select>
-											<option>男</option>
-											<option>女</option>
+										<select id="sex_user" name="sex">
+											<option <c:if test="${sessionScope.userinfo.sex eq 1 or sessionScope.userinfo.sex eq null}">selected="selected"</c:if> value="1">男</option>
+											<option <c:if test="${sessionScope.userinfo.sex eq 2}">selected="selected"</c:if> value="2">女</option>
+											<option <c:if test="${sessionScope.userinfo.sex eq 0}">selected="selected"</c:if> value="0">未知</option>
 										</select>
 									</div>
 								</div>
@@ -93,7 +95,20 @@
 								<div class="item-inner">
 									<div class="item-title label">生日</div>
 									<div class="item-input">
-										<input type="date" placeholder="Birth day" value="2014-04-30">
+										<input type="date" placeholder="生日" value="1980-04-30" name="birthday" id="birthday">
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-media">
+									<i class="icon icon-form-calendar"></i>
+								</div>
+								<div class="item-inner">
+									<div class="item-title label">入职时间</div>
+									<div class="item-input">
+										<input type="date" placeholder="入职时间" value="2014-04-30" name="enterDay" id="enterDay">
 									</div>
 								</div>
 							</div>
@@ -106,7 +121,7 @@
 								<div class="item-inner">
 									<div class="item-title label">手机号</div>
 									<div class="item-input">
-										<input type="text" placeholder="手机号">
+										<input type="text" placeholder="手机号" name="mobile" id="mobile">
 									</div>
 								</div>
 							</div>
@@ -119,7 +134,7 @@
 								<div class="item-inner">
 									<div class="item-title label">身份证号</div>
 									<div class="item-input">
-										<input type="text" placeholder="身份证号码">
+										<input type="text" placeholder="身份证号码" id="ino" name="ino">
 									</div>
 								</div>
 							</div>
@@ -132,7 +147,7 @@
 							<a href="login_wx.jsp" class="button button-big button-fill button-danger">取消</a>
 						</div>
 						<div class="col-50">
-							<a href="#" class="button button-big button-fill button-success">提交</a>
+							<a href="javascript:registerWxopenid();" class="button button-big button-fill button-success">提交</a>
 						</div>
 					</div>
 				</div>
@@ -140,13 +155,69 @@
 
 		</div>
 	</div>
-
-	<script type='text/javascript'
+<script type="text/javascript">
+function registerWxopenid(){
+	var queryparam = "";
+ 	var openid= $("input[id='openid']").attr("value");
+ 	if(openid!=""){
+ 		queryparam=queryparam+"&&openid="+openid;
+	}
+	var realname = $("input[id='realname']").attr("value");
+	if(realname==""){
+		alert("请填写真实姓名");
+		return;
+	}else{
+		queryparam=queryparam+"&&realname="+realname;
+	}
+	var email = $("input[id='email']").attr("value");
+	if(email!=""){
+ 		queryparam=queryparam+"&&email="+email;
+	}
+	var password = $("input[id='password']").attr("value");
+	if(password==""){
+		alert("请填写密码");
+		return;
+	}
+	else{
+ 		queryparam=queryparam+"&&password="+password;
+	}
+ 	var  myselect=document.getElementById("sex_user");
+ 	var index = myselect.selectedIndex;//获取选中的index
+ 	var sex = myselect.options[index].value;//获取value值
+ 	if(sex!=""){
+ 		queryparam=queryparam+"&&sex="+sex;
+	}
+	var birthday = $("input[id='birthday']").attr("value");
+	if(birthday!=""){
+ 		queryparam=queryparam+"&&birthday="+birthday;
+	}
+	var enterDay = $("input[id='enterDay']").attr("value");
+	if(enterDay!=""){
+ 		queryparam=queryparam+"&&enterDay="+enterDay;
+	}
+	var mobile = $("input[id='mobile']").attr("value");
+	if(mobile==""){
+		alert("请输入注册微信所使用的手机号");
+		return;
+	}else{
+		queryparam=queryparam+"&&mobile="+mobile;
+	}
+	var ino = $("input[id='ino']").attr("value");
+	if(ino==""){
+		alert("内部员工请输入身份证号实名制注册");
+		return;
+	}
+	else{
+		queryparam=queryparam+"&&idno="+ino;
+	}
+  window.location.href="${pageContext.request.contextPath}/wxAuthLogIn?type=register&&"+queryparam;
+}
+</script>
+<script type='text/javascript'
 		src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
-	<script type='text/javascript'
+<script type='text/javascript'
 		src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-	<script type='text/javascript'
+<script type='text/javascript'
 		src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-
 </body>
 </html>

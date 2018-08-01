@@ -110,8 +110,7 @@ public class WxAuthUtil {
 		ViewButton button_login = new ViewButton();
 		button_login.setName("员工登陆");
 		button_login.setType("view");
-		button_login.setUrl("http://weixin.xiangmu.ren/zpwx/WxAuthLogIn");
-		
+		button_login.setUrl("http://weixin.xiangmu.ren/zpwx/wxAuthLogIn?type=auth");
 //		ViewButton button31 = new ViewButton();
 //		button31.setName("考勤信息");
 //		button31.setType("view");

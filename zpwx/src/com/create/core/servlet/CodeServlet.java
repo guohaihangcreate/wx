@@ -25,18 +25,14 @@ public class CodeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 调用工具类生成的验证码和验证码图片
         Map<String, Object> codeMap = CodeUtil.generateCodeAndPic();
-
         // 将四位数字的验证码保存到Session中。
         HttpSession session = req.getSession();
         session.setAttribute("code", codeMap.get("code").toString());
-
         // 禁止图像缓存。
         resp.setHeader("Pragma", "no-cache");
         resp.setHeader("Cache-Control", "no-cache");
         resp.setDateHeader("Expires", -1);
-
         resp.setContentType("image/jpeg");
-
         // 将图像输出到Servlet输出流中。
         ServletOutputStream sos;
         try {

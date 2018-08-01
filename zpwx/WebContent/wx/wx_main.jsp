@@ -25,7 +25,7 @@
 	<div class="content" style="background:url('../img/timg.jpg');">
 		<div class="content-padded grid-demo">
 			 <div class="row no-gutter">
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">工资条查询</a>
+				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="${pageContext.request.contextPath}/gzt_page.jsp">工资条查询</a>
 				</div>
 				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">考勤查询</a></div>
 				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">项目通知</a></div>
