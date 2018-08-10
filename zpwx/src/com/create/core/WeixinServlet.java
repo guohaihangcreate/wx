@@ -12,6 +12,11 @@ import com.create.util.WxCheckUtil;
 @WebServlet("/wx_c")
 public class WeixinServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public WeixinServlet() {
 		// TODO Auto-generated constructor stub
 	}

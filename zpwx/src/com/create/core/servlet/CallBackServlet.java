@@ -27,66 +27,93 @@ public class CallBackServlet extends HttpServlet {
 	}
 	@Override
 	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		String code = request.getParameter("code");
-		String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+WxAuthUtil.APPID
-				+ "&secret="+WxAuthUtil.APPSECRET
-				+ "&code="+code
-				+ "&grant_type=authorization_code";		
-		JSONObject authObject = WxAuthUtil.doGetJson(url);
-		String token = authObject.getString("access_token");
-		String openid = authObject.getString("openid");
-		String userUrl = "https://api.weixin.qq.com/sns/userinfo?access_token="+token
-				+ "&openid="+openid
-				+ "&lang=zh_CN";
-		Wx_user userinfo = null;
+		String optiontype = request.getParameter("optiontype");
+		String dispatcherpage="/login_wx.jsp";
 		Wx_userServices wx_userServices=new Wx_userServices();
+		Wx_user userinfo = null;
 		List<Wx_user> userinfos = null;
-		if(StringUtils.isNotBlank(openid)) {
-			 userinfos= wx_userServices.query(openid);
-		}
-		if(userinfos==null||userinfos.size()==0) {
-			userinfo = new Wx_user();
-			JSONObject userInfoObject = WxAuthUtil.doGetJson(userUrl);
-			String nickname = userInfoObject.getString("nickname");
-			String country = userInfoObject.getString("country");
-			String city = userInfoObject.getString("city");
-			String province = userInfoObject.getString("province");
-			String headimgurl = userInfoObject.getString("headimgurl");
-			String privilege = userInfoObject.getString("privilege");
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			if(userInfoObject.has("unionid")) {
-				String unionid = userInfoObject.getString("unionid");
-				userinfo.setUnionid(unionid);
+		if(StringUtils.isNotBlank(optiontype)&&"registered".equals(optiontype)) {
+			String openid = request.getParameter("openid");
+			if(StringUtils.isNotBlank(openid)) {
+				 userinfos= wx_userServices.query(openid);
 			}
-			String sex = userInfoObject.getString("sex");
-			userinfo.setNickname(nickname);
-			userinfo.setCountry(country);
-			userinfo.setCity(city);
-			userinfo.setProvince(province);
-			userinfo.setHeadimgurl(headimgurl);
-			userinfo.setPrivilege(privilege);
-			userinfo.setLogintype(0);//注册状态，1为已经注册，0为未注册
-			String time= sdf.format( new Date());
-			try {
-				Date createtime=sdf.parse(time);
-				userinfo.setCreatetime(createtime);
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			if(StringUtils.isNotBlank(sex)) {
-				userinfo.setSex(Integer.valueOf(sex));
-			}
-			userinfo.setOpenid(openid);
-	        wx_userServices.regist(userinfo); 
-		}else {
 			if(userinfos!=null&&userinfos.size()>0) {
-				userinfo=userinfos.get(0);
+				//跳转到主页面
+				if(userinfos!=null&&userinfos.size()>0) {
+					userinfo=userinfos.get(0);
+					String pass = userinfo.getPassword();
+					int logintype = userinfo.getLogintype();
+					if(StringUtils.isNotBlank(pass)&&logintype==1) {
+						dispatcherpage="/wx/wx_main.jsp";
+					}
+				}
+			}
+		}else {
+			String code = request.getParameter("code");
+			String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+WxAuthUtil.APPID
+					+ "&secret="+WxAuthUtil.APPSECRET
+					+ "&code="+code
+					+ "&grant_type=authorization_code";		
+			JSONObject authObject = WxAuthUtil.doGetJson(url);
+			String token = authObject.getString("access_token");
+			String openid = authObject.getString("openid");
+			String userUrl = "https://api.weixin.qq.com/sns/userinfo?access_token="+token
+					+ "&openid="+openid
+					+ "&lang=zh_CN";
+			if(StringUtils.isNotBlank(openid)) {
+				 userinfos= wx_userServices.query(openid);
+			}
+			if(userinfos==null||userinfos.size()==0) {
+				userinfo = new Wx_user();
+				JSONObject userInfoObject = WxAuthUtil.doGetJson(userUrl);
+				String nickname = userInfoObject.getString("nickname");
+				String country = userInfoObject.getString("country");
+				String city = userInfoObject.getString("city");
+				String province = userInfoObject.getString("province");
+				String headimgurl = userInfoObject.getString("headimgurl");
+				String privilege = userInfoObject.getString("privilege");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				if(userInfoObject.has("unionid")) {
+					String unionid = userInfoObject.getString("unionid");
+					userinfo.setUnionid(unionid);
+				}
+				String sex = userInfoObject.getString("sex");
+				userinfo.setNickname(nickname);
+				userinfo.setCountry(country);
+				userinfo.setCity(city);
+				userinfo.setProvince(province);
+				userinfo.setHeadimgurl(headimgurl);
+				userinfo.setPrivilege(privilege);
+				userinfo.setLogintype(0);//注册状态，1为已经注册，0为未注册
+				String time= sdf.format( new Date());
+				try {
+					Date createtime=sdf.parse(time);
+					userinfo.setCreatetime(createtime);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				if(StringUtils.isNotBlank(sex)) {
+					userinfo.setSex(Integer.valueOf(sex));
+				}
+				userinfo.setOpenid(openid);
+				//根据openId查询该用户是否已经注册
+			    wx_userServices.regist(userinfo); 
+			}else {
+				if(userinfos!=null&&userinfos.size()>0) {
+					userinfo=userinfos.get(0);
+					String pass = userinfo.getPassword();
+					int logintype = userinfo.getLogintype();
+					//标识已经注册
+					if(StringUtils.isNotBlank(pass)&&logintype==1) {
+						dispatcherpage="wx/nav_tabbar.jsp";
+					}
+				}
 			}
 		}
 		request.getSession().setAttribute("userinfo", userinfo);
 		request.setAttribute("userinfo", userinfo);
-		request.getRequestDispatcher("/login_wx.jsp").forward(request, response);
+		request.getRequestDispatcher(dispatcherpage).forward(request, response);
 	}
 
 }
