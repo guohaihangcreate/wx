@@ -1,6 +1,9 @@
 eclipse.preferences.version=1
 encoding//WebContent/register.jsp=UTF-8
+encoding//WebContent/register_1.jsp=UTF-8
 encoding//WebContent/register_bak1.jsp=UTF-8
+encoding//WebContent/test/aotucar.jsp=UTF-8
+encoding//WebContent/wx/adressList.jsp=UTF-8
 encoding//src/com/create/core/servlet/CallBackServlet.java=UTF-8
 encoding//src/com/create/dao/DaoFactory.java=UTF-8
 encoding//src/com/create/po/Wx_user.java=UTF-8
