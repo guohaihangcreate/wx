@@ -11,62 +11,71 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-<link rel="stylesheet"
-	href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
-<link rel="stylesheet"
-	href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/weui.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/example.css" />
 </head>
 <body>
-	<header class="bar bar-nav">
-<!-- 	<h1 class='title'>栅格</h1> -->
-	</header>
-	<div class="content" style="background:url('../img/timg.jpg');">
-		<div class="content-padded grid-demo">
-			 <div class="row no-gutter">
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="${pageContext.request.contextPath}/gzt_page.jsp">工资条查询</a>
-				</div>
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">考勤查询</a></div>
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">项目通知</a></div>
-			</div>
-			<div class="row no-gutter">
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;"><a href="www.baidu.com">放假通知</a></div>
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
-					<a href="www.baidu.com">集团动态</a></div>
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
-					<a href="www.baidu.com">......</a></div>
-			</div>
-			 <div class="row no-gutter">
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
-					<a href="www.baidu.com">工作机会</a></div>
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
-					<a href="www.baidu.com">推荐有礼</a></div>
-				<div class="col-33" style="height: 6rem;text-align: center;vertical-align: middle;" >
-					<a href="www.baidu.com">......</a></div>
-			</div>
-		</div>
-	</div>
-	<nav class="bar bar-tab"> <a class="tab-item external active"
-		href="#"> <span class="icon icon-home"></span> <span
-		class="tab-label">常用</span>
-	</a> <a class="tab-item external" href="#"> <span class="icon icon-me"></span>
-		<span class="tab-label">项目情况</span> <span class="badge">2</span>
-	</a> <a class="tab-item external" href="#"> <span
-		class="icon icon-star"></span> <span class="tab-label">蜗牛在行动</span>
-	</a> <a class="tab-item external" href="#"> <span
-		class="icon icon-cart"></span> <span class="tab-label">蜗牛历史</span>
-	</a> <a class="tab-item external" href="${pageContext.request.contextPath}/myinfo.jsp"> <span
-		class="icon icon-settings"></span> <span class="tab-label">我</span>
-	</a> </nav>
-
-	<script type='text/javascript'
-		src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
-	<script type='text/javascript'
-		src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-	<script type='text/javascript'
-		src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-
+    <div class="page__hd">
+        <h1 class="page__title">Grid</h1>
+        <p class="page__desc">九宫格</p>
+    </div>
+    <div class="weui-grids">
+        <a href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+                <img src="${pageContext.request.contextPath}/images/icon_tabbar.png" alt="">
+            </div>
+            <p class="weui-grid__label">薪酬发放查询</p>
+        </a>
+        <a href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+                <img src="${pageContext.request.contextPath}/images/icon_tabbar.png" alt="">
+            </div>
+            <p class="weui-grid__label">考勤查询</p>
+        </a>
+        <a href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+                <img src="${pageContext.request.contextPath}/images/icon_tabbar.png" alt="">
+            </div>
+            <p class="weui-grid__label">最新IT咨询</p>
+        </a>
+        <a href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+                <img src="${pageContext.request.contextPath}/images/icon_tabbar.png" alt="">
+            </div>
+            <p class="weui-grid__label">趣味拓展活动</p>
+        </a>
+        <a href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+                <img src="${pageContext.request.contextPath}/images/icon_tabbar.png" alt="">
+            </div>
+            <p class="weui-grid__label">视频面试</p>
+        </a>
+        <a href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+                <img src="${pageContext.request.contextPath}/images/icon_tabbar.png" alt="">
+            </div>
+            <p class="weui-grid__label">绩效考核</p>
+        </a>
+        <a href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+                <img src="${pageContext.request.contextPath}/images/icon_tabbar.png" alt="">
+            </div>
+            <p class="weui-grid__label">各项目动态</p>
+        </a>
+        <a href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+                <img src="${pageContext.request.contextPath}/images/icon_tabbar.png" alt="">
+            </div>
+            <p class="weui-grid__label">优秀个人表彰</p>
+        </a>
+        <a href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+                <img src="${pageContext.request.contextPath}/images/icon_tabbar.png" alt="">
+            </div>
+            <p class="weui-grid__label">通知公告</p>
+        </a>
+    </div>
+</div>
 </body>
 <script type="text/javascript">
 	$(function() {

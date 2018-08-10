@@ -42,17 +42,17 @@ public class Wx_user {
 	
 	private String departId;
 	
-	private Date birthday;
+	private String birthday;
 	
-	private Date enterday;
+	private String enterday;
 	
 	private String mobile;
 	
 	private Date createtime;
 	
-	private Date modifyTime;
+	private String modifyTime;
 	
-	private Date registerTime;
+	private String registerTime;
 	
 	private int logintype;
 	
@@ -208,27 +208,27 @@ public class Wx_user {
 		this.createtime = createtime;
 	}
 
-	public Date getModifyTime() {
+	public String getModifyTime() {
 		return modifyTime;
 	}
 
-	public void setModifyTime(Date modifyTime) {
+	public void setModifyTime(String modifyTime) {
 		this.modifyTime = modifyTime;
 	}
 
-	public Date getRegisterTime() {
+	public String getRegisterTime() {
 		return registerTime;
 	}
 
-	public void setRegisterTime(Date registerTime) {
+	public void setRegisterTime(String registerTime) {
 		this.registerTime = registerTime;
 	}
 	
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	
@@ -240,11 +240,11 @@ public class Wx_user {
 		this.mobile = mobile;
 	}
 
-	public Date getEnterday() {
+	public String getEnterday() {
 		return enterday;
 	}
 
-	public void setEnterday(Date enterday) {
+	public void setEnterday(String enterday) {
 		this.enterday = enterday;
 	}
 

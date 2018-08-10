@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +57,7 @@ public class Jdbc_Service implements UserDao {
 			ps.setString(10, user.getIdno());
 			ps.setString(11, user.getCompanyId());
 			ps.setString(12, user.getDepartId());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			ps.setTimestamp(13, new java.sql.Timestamp(user.getCreatetime().getTime())); // 转换，将java.util中的Date转换称java.sql中的Date
 			int count = ps.executeUpdate();
 			if (count == 1) {
@@ -129,6 +131,12 @@ public class Jdbc_Service implements UserDao {
 			        if(StringUtils.isNotBlank(city)) {
 			        	wx_user.setCity(city);;
 			        }
+			        String password = rs.getString("password");
+			        if(StringUtils.isNotBlank(password)) {
+			        	wx_user.setPassword(password);
+			        }
+			        int logointype = rs.getInt("logointype");
+			        wx_user.setLogintype(logointype);
 			        int sex = rs.getInt("sex");
 			        wx_user.setSex(sex);
 			        String headimgurl = rs.getString("headimgurl");
@@ -248,7 +256,7 @@ public class Jdbc_Service implements UserDao {
 		PreparedStatement ps = null;
 		try {
 			cn = DriverManager.getConnection(DB_URL, user_1, pas);
-			String sql = "update wx_user set logointype="+wx_user.getLogintype();
+			String sql = "update wx_user set registerTime=CURRENT_TIMESTAMP(),logointype="+wx_user.getLogintype();
 			if(StringUtils.isNotBlank(wx_user.getCountry())) {
 				sql += " ,country='"+wx_user.getCountry()+"'";
 			}
@@ -262,16 +270,13 @@ public class Jdbc_Service implements UserDao {
 				sql += " ,password='"+wx_user.getPassword()+"'";
 			}
 			if(wx_user!=null&&wx_user.getBirthday()!=null) {
-				sql += " ,password='"+wx_user.getPassword()+"'";
-			}
-			if(wx_user!=null&&wx_user.getBirthday()!=null) {
-				sql += " ,password="+wx_user.getBirthday();
+				sql += " ,birthday=DATE('"+wx_user.getBirthday()+"')";
 			}
 			if(wx_user!=null&&wx_user.getEnterday()!=null) {
-				sql += " ,enterday="+wx_user.getEnterday();
+				sql += " ,enterday=DATE('"+wx_user.getEnterday()+"')";
 			}
 			if(wx_user!=null&&wx_user.getRegisterTime()!=null) {
-				sql += " ,registerTime="+wx_user.getRegisterTime();
+				sql += " ,registerTime=CURRENT_TIMESTAMP()";
 			}
 			if(StringUtils.isNotBlank(wx_user.getMobile())) {
 				sql += " ,mobile="+wx_user.getMobile();
@@ -288,8 +293,8 @@ public class Jdbc_Service implements UserDao {
 			if(StringUtils.isNotBlank(wx_user.getCompanyId())) {
 				sql += " ,companyId="+wx_user.getCompanyId();
 			}
-			if(StringUtils.isNotBlank(wx_user.getDepartId())) {
-				sql += " ,org_id="+wx_user.getDepartId();
+			if(StringUtils.isNotBlank(wx_user.getOrg_id())) {
+				sql += " ,org_id="+wx_user.getOrg_id();
 			}
 			if(StringUtils.isNotBlank(wx_user.getOpenid())) {
 				sql += " where  openId='"+wx_user.getOpenid()+"'";

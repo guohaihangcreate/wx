@@ -18,7 +18,7 @@
 	href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
 
 </head>
-<body>
+<body onload="opener.location.reload(true);">
 	<div class="page-group">
 		<div class="page page-current">
 			<!-- 你的html代码 -->
@@ -48,7 +48,7 @@
 								</div>
 								<div class="item-inner">
 									<div class="item-input">
-										<input type="password" placeholder="请输入密码">&nbsp;<a href="register.jsp">注册</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="forgetPassWord.jsp">找回密码</a>
+										<input type="password" placeholder="请输入密码">&nbsp;<a href="javascript:register();">注册</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="forgetPassWord.jsp">找回密码</a>
 									</div>
 								</div>
 							</div>
@@ -89,16 +89,16 @@
 
 </body>
 <script type="text/javascript">
-    $(function() {
-
-    });
-
+$(document).ready(function(){
+})
+function register() {        
+  window.location.href="${pageContext.request.contextPath}/register.jsp?v=<%=Math.random()%>";
+}
     function changeImg() {        
         var imgSrc = $("#imgObj");    
         var src = imgSrc.attr("src");        
         imgSrc.attr("src", chgUrl(src));
     }
-    
     // 时间戳
     // 为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳
     function chgUrl(url) {
@@ -111,6 +111,60 @@
         }
         return url;
     }
+    
 
+    $(document).ready(function(){
+    	$("#btn").click(function(){
+    	   var openid = $("#openid").val();
+    	   var realname = $("#realname").val()
+    	    if(realname==''){
+        		alert("请输入真实姓名");
+        		return;
+        	}
+        	var email = $("#email").val();
+          	var password = $("#password").val();
+          	if(password==''){
+          		alert("请输入密码");
+          		return;
+          	}
+         	var  myselect=document.getElementById("sex_user");
+         	var index = myselect.selectedIndex;//获取选中的index
+         	var sex = myselect.options[index].value;//获取value值
+        	var birthday = $("#birthday").val();
+            var enterDay = $("#enterDay").val();
+        	var mobile = $("#mobile").val();
+        	if(mobile==''){
+        		alert("请输入注册微信所使用的手机号");
+        		return;
+        	}
+    		var ino = $("#ino").val();
+        	if(ino==''){
+        		alert("内部员工请输入身份证号实名制注册");
+        		return;
+        	}
+    	   $.post("wxAuthLogIn?type=register&v=<%=Math.random()%>", //利用ajax发起请求，这里写servlet的路径
+    			{
+    				"openid" : openid,
+    				"realname" : realname,
+    				"email" : email,
+    				"password" : password,
+    				"sex" : sex,
+    				"birthday" : birthday,
+    				"enterDay" : enterDay,
+    				"mobile" : mobile,
+    				"ino" : ino
+    			}, //传参
+    			function(data) { //请求成功时的回调函数
+    				if (data.IsOK == true) {
+    					alert(1);
+    					// 		            	  window.location.href="login.do?method=2"; //如果返回的IsOK的值为true,也就是用户名密码都正确，则执行该跳转
+    				} else {
+    					alert(2);
+    					// 		            	 window.location.href="http://www.baidu.com";
+    				}
+    			}, "json");
+    		})
+    	})
+    
 </script>
 </html>
