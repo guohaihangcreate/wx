@@ -23,7 +23,6 @@
 				<version>3.0.0</version>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
-					<encoding>utf8</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
